@@ -1,5 +1,14 @@
 <?php
 
+// Si la valeur transmise est un email
+// la fonction retourne vrai
+function estEmail($valeur) {
+    if (filter_var($valeur, FILTER_VALIDATE_EMAIL)) {
+       return true;
+    } else {
+        return false;
+    }
+}
 // Si la valeur transmise ne contient pas d'autres caractères que des chiffres, 
 // la fonction retourne vrai
 function estEntier($valeur) {
