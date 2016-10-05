@@ -6,3 +6,4 @@ Projet Festival (Festival Folklores du Monde de Saint Malo) en Php pour le modul
 il reste à compléter cette couche en ajoutant les classes nécessaires pour gérer les Offres d'hébergement ainsi que les attributions
 d'offres aux groupes, et les classes DAO associées ; il faudra également intégrer l'usage de ces classes aux contrôleurs et aux vues, 
 en remplacement des fonctions classiques actuellement regroupées dans le répertoire "includes/gestionDonnees"
+Read me test
