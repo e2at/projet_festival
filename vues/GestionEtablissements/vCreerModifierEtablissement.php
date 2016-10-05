@@ -76,6 +76,9 @@ if ($creation) {
     // tel qu'il a été saisi) 
     echo '
          <tr class="ligneTabNonQuad">
+      </tr>
+      <tr class="ligneTabNonQuad">
+         <td> Téléphone*: </td>
             <td> Id*: </td>
             <td><input type="text" value="' . $id . '" name="id" size ="10" 
             maxlength="8"></td>
