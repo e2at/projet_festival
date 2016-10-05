@@ -62,6 +62,7 @@ switch ($action) {
         $type = $_REQUEST['type'];
         $civiliteResponsable = $_REQUEST['civiliteResponsable'];
         $nomResponsable = $_REQUEST['nomResponsable'];
+        $nomResponsable = strtoupper($nomResponsable);
         $prenomResponsable = $_REQUEST['prenomResponsable'];
 
         if ($action == 'validerCreerEtab') {
@@ -151,10 +152,10 @@ function estUneAdresseMail($valeur) {
 
 function estUnNomEta($valeurNom) {
     if(preg_match('`{([-=.:!?@]+)}`', $valeurNom)){
-        return true;
-    }
-    else {
         return false;
     }
-
+    else {
+        return true;
+    }
 }
+
