@@ -7,9 +7,8 @@ $URL = $_SERVER['PHP_SELF'] . "?" . $_SERVER['QUERY_STRING'];
 // position de l'onglet dans la barre)
 function construireMenu($nom, $adr) {
     global $URL;
-    // <li class="active"><a href="#">Home</a></li>
-    // construireMenu("Accueil", "index.php", 1);
-    if(($adr != null) && (strpos($adr,$URL) !== false)) {
+
+    if(($adr != null) && (strpos($URL,$adr) !== false)) {
         echo '<li class="active"><a href="' . $adr . '">' . $nom . '</a></li>';
     } else {
         echo '<li><a href="' . $adr . '">' . $nom . '</a></li>';
