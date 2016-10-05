@@ -1,3 +1,4 @@
+<?php include("_onglets.inc.php"); ?>
 <!DOCTYPE html">
 <html lang="fr">
     <head>
@@ -6,6 +7,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="css/cssGeneral.css" rel="stylesheet" type="text/css">
         <link href="css/cssOnglets.css" rel="stylesheet" type="text/css">
+        
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     </head>
     <body class='basePage'>
         <!--  Tableau contenant le titre et les menus -->
@@ -18,24 +22,23 @@
                 </td>
             </tr>
             <!-- Menus -->
-            <tr> 
-                <td>
-                    <!-- On inclut le fichier de gestion des onglets ; si on a des 
-                    menus traditionnels, il faudra inclure le fichier adéquat -->
-                    <?php include("_onglets.inc.php"); ?>
-
-                    <div id='barreMenus'>
-                        <ul class='menus'>
-                            <?php construireMenu("Accueil", "index.php", 1); ?>
-                            <?php construireMenu("Gestion établissements", "cGestionEtablissements.php", 2); ?>
-                            <?php construireMenu("Gestion types chambres", "cGestionTypesChambres.php", 3); ?>
-                            <?php construireMenu("Offre hébergement", "cOffreHebergement.php", 4); ?>
-                            <?php construireMenu("Attribution chambres", "cAttributionChambres.php", 5); ?>
-                        </ul>
-                    </div>
-
-                </td>
-            </tr>
+            <div class="container">
+      <nav class="navbar navbar-default" style="margin-top: 3%;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Festival Folklores du Monde</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                            <?php construireMenu("Accueil", "index.php"); ?>
+                            <?php construireMenu("Gestion établissements", "cGestionEtablissements.php"); ?>
+                            <?php construireMenu("Gestion types chambres", "cGestionTypesChambres.php"); ?>
+                            <?php construireMenu("Offre hébergement", "cOffreHebergement.php"); ?>
+                            <?php construireMenu("Attribution chambres", "cAttributionChambres.php"); ?>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav></div>
             <!-- Fin des menus -->
             <tr>
                 <td class="basePage">
