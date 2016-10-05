@@ -150,10 +150,11 @@ function estUneAdresseMail($valeur) {
 }
 
 function estUnNomEta($valeurNom) {
-    if(filter_var(preg_match('/[^a-zA-Z]/', $valeurNom))) {
+    if(preg_match('`{([-=.:!?@]+)}`', $valeurNom)){
         return true;
     }
     else {
         return false;
     }
+
 }

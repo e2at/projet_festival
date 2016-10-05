@@ -6,7 +6,6 @@
         <meta http-equiv="Content-Language" content="fr">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="css/cssGeneral.css" rel="stylesheet" type="text/css">
-        <link href="css/cssOnglets.css" rel="stylesheet" type="text/css">
         
         <!-- Bootstrap -->
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
@@ -16,7 +15,7 @@
         <table width="100%" cellpadding="0" cellspacing="0">
             <!-- Titre -->
             <tr> 
-                <td class="titre">Festival Folklores du Monde <br>
+                <td class="titre">
                     <span id="texteNiveau2" class="texteNiveau2">
                         H&eacute;bergement des groupes</span><br>&nbsp;
                 </td>
@@ -36,9 +35,9 @@
                             <?php construireMenu("Offre hébergement", "cOffreHebergement.php"); ?>
                             <?php construireMenu("Attribution chambres", "cAttributionChambres.php"); ?>
             </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav></div>
+          </div>
+        </div>
+      </nav>
             <!-- Fin des menus -->
             <tr>
                 <td class="basePage">
