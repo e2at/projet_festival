@@ -3,7 +3,8 @@
 /* Style de base pour la page (couleur fond : ocre, couleur texte : noir) */
 .basePage 
 {
-   background-color:white;
+   background-color: rgb(34, 46, 55);
+
    color:black;
    font:11px Arial, Helvetica, sans-serif;
 }
@@ -18,7 +19,7 @@
 .texteNiveau2
 {
    font-size: 20px;
-   color:black;
+   color:white;
    text-align:center;
    
    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

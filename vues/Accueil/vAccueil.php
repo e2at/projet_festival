@@ -12,20 +12,20 @@ include ("includes/_debut.inc.php");
         <h5>Elle offre les services suivants :</h5>
          <div class="row">
         <div class="col-lg-6">
-          <p>Consulter, créer, modifier ou supprimer des établissements acceptant d'héberger les groupes de musiciens. </p>
-          <p><a class="btn btn-primary" href="cGestionEtablissements.php" role="button">Accéder à la page</a></p>
+          <!--<p>Consulter, créer, modifier ou supprimer des établissements acceptant d'héberger les groupes de musiciens. </p>-->
+          <p><a class="btn btn-primary" href="cGestionEtablissements.php" role="button">Les établissements</a></p>
         </div>
         <div class="col-lg-5">
-          <p>Consulter, créer, modifier ou supprimer des caractéristiques de chambres. </p>
-          <p><a class="btn btn-primary" href="cGestionTypesChambres.php" role="button">Accéder à la page</a></p>
+                    <!--<p>Consulter, créer, modifier ou supprimer des caractéristiques de chambres. </p>-->
+          <p><a class="btn btn-primary" href="cGestionTypesChambres.php" role="button">Les types de chambres</a></p>
         </div>
         <div class="col-lg-6">
-          <p>Consulter, déclarer ou modifier les capacités d'accueil des établissements. </p>
-          <p><a class="btn btn-primary" href="cOffreHebergement.php" role="button">Accéder à la page</a></p>
+                    <!--<p>Consulter, déclarer ou modifier les capacités d'accueil des établissements. </p>-->
+          <p><a class="btn btn-primary" href="cOffreHebergement.php" role="button">Les offres d'hébergement</a></p>
         </div>
         <div class="col-lg-5">
-          <p>Consulter, réaliser ou modifier les attributions des chambres aux groupes dans les établissements. </p>
-          <p><a class="btn btn-primary" href="cAttributionChambres.php" role="button">Accéder à la page</a></p>
+                   <!-- <p>Consulter, réaliser ou modifier les attributions des chambres aux groupes dans les établissements. </p>-->
+          <p><a class="btn btn-primary" href="cAttributionChambres.php" role="button">Attributions des chambres</a></p>
         </div>
       </div>
       </div>
