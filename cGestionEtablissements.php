@@ -116,6 +116,10 @@ function verifierDonneesEtabC($id, $nom, $adresseRue, $codePostal, $ville, $tel,
     if($adresseMail != "" && !estUneAdresseMail($adresseMail)) {
         ajouterErreur('L\'adresse entrée n\'est pas un email !');
     }
+    if($nom != "" && !estUnNomEta($nom)) {
+        ajouterErreur('Le nom entré n\'est pas un nom valide, certains caractères sont interdits !');
+    }
+
 }
 
 function verifierDonneesEtabM($id, $nom, $adresseRue, $codePostal, $ville, $tel, $nomResponsable) {
@@ -143,4 +147,14 @@ function estUneAdresseMail($valeur) {
     else {
         return false;
     }
+}
+
+function estUnNomEta($valeurNom) {
+    if(preg_match('`{([-=.:!?@]+)}`', $valeurNom)){
+        return true;
+    }
+    else {
+        return false;
+    }
+
 }
