@@ -1,6 +1,6 @@
 <?php
 
-
+namespace modele\metier;
 
 /**
  * Description of Offre
@@ -10,12 +10,12 @@
 class Offre {
     private $unEtablissement;
     private $unTypeChambre;
-    private $nbreCambre;
+    private $nbreChambre;
     
     public function __construct($unEtablissement, $unTypeChambre, $nbreChambre) {
         $this->unEtablissement = $unEtablissement;
         $this->unTypeChambre = $unTypeChambre;
-        $this->nbreCambre = $nbreChambre;
+        $this->nbreChambre = $nbreChambre;
         
     }
     function getUnEtablissement() {
@@ -26,8 +26,8 @@ class Offre {
         return $this->unTypeChambre;
     }
 
-    function getNbreCambre() {
-        return $this->nbreCambre;
+    function getNbreChambre() {
+        return $this->nbreChambre;
     }
 
     function setUnEtablissement($unEtablissement) {
@@ -38,8 +38,8 @@ class Offre {
         $this->unTypeChambre = $unTypeChambre;
     }
 
-    function setNbreCambre($nbreCambre) {
-        $this->nbreCambre = $nbreCambre;
+    function setNbreChambre($nbreChambre) {
+        $this->nbreChambre = $nbreChambre;
     }
 
 }
