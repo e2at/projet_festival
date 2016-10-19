@@ -12,7 +12,7 @@ class AttributionDAO implements IDAO {
         $typeChambre = $enreg['IDTYPECHAMBRE'];
         $idGroupe = $enreg['IDGROUPE'];
         $nbChambres = $enreg['NOMBRECHAMBRES'];
-        $uneAttribution = new ($idEtab, $typeChambre, $idGroupe, $nbChambres);
+        $uneAttribution = new Attribution($idEtab, $typeChambre, $idGroupe, $nbChambres);
 
         return $uneAttribution;
     }
