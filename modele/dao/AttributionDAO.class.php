@@ -46,7 +46,7 @@ class AttributionDAO implements IDAO {
     
     public static function getOneById($id) {
         $objetConstruit = null;
-        $requete = "SELECT * FROM Attribution WHERE ID = :id";
+        $requete = "SELECT * FROM Attribution WHERE idEtab = :id";
         $stmt = Bdd::getPdo()->prepare($requete);
         $stmt->bindParam(':id', $id);
         $ok = $stmt->execute();
@@ -79,7 +79,7 @@ class AttributionDAO implements IDAO {
      */
     public static function update($id, $objet) {
         $ok = false;
-        $requete = "UPDATE  Attribution SET idEtab=:idEtablissement, idTypeChambre=:idTypeChambre,
+        $requete = "UPDATE Attribution SET idEtab=:idEtablissement, idTypeChambre=:idTypeChambre,
            idGroupe=:idGroupe, nombreChambres=:nombreChambres
            WHERE ID=:id";
         $stmt = Bdd::getPdo()->prepare($requete);
@@ -90,7 +90,13 @@ class AttributionDAO implements IDAO {
     }
     
     public static function delete($id) {
-        return false;
+        $ok = false;
+        $requete = "DELETE FROM Attribution WHERE idEtab = :id";
+        $stmt = Bdd::getPdo()->prepare($requete);
+        $stmt->bindParam(':id', $id);
+        $ok = $stmt->execute();
+        $ok = $ok && ($stmt->rowCount() > 0);
+        return $ok;
     }
     
     public static function getAllByEtablissement($idEtab) {
