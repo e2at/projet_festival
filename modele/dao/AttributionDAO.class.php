@@ -70,7 +70,6 @@ class AttributionDAO implements IDAO {
         return ($ok && $stmt->rowCount() > 0);
     }
 
-
     /**
      * Mettre à jour enregistrement dans la table à partir de l'état d'un objet métier
      * @param string identifiant de l'enregistrement à mettre à jour
@@ -81,7 +80,7 @@ class AttributionDAO implements IDAO {
         $ok = false;
         $requete = "UPDATE Attribution SET idEtab=:idEtablissement, idTypeChambre=:idTypeChambre,
            idGroupe=:idGroupe, nombreChambres=:nombreChambres
-           WHERE ID=:id";
+           WHERE idEtab=:id";
         $stmt = Bdd::getPdo()->prepare($requete);
         self::metierVersEnreg($objet, $stmt);
         $stmt->bindParam(':id', $id);
