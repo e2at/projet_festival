@@ -7,10 +7,10 @@
     
 
     class OffreDAO implements IDAO {
-            
+    
         public static function enregistrementVersObjet($unEnregistrement) {
 
-            $retour = new Offre($unEnregistrement['idEtab'], $unEnregistrement['idTypeChambre'], $unEnregistrement['nombreChambres']);
+     // A revoir        $retour = new Offre($unEnregistrement['idEtab'], $unEnregistrement['idTypeChambre'], $unEnregistrement['nombreChambres']);
             return $retour;  
 
         }
