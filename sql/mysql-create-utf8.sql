@@ -3,7 +3,7 @@
 -- UTF-8 et l'interclassement associé utf8_general_ci (ce sont les valeurs 
 -- par défaut si vous utilisez le package EasyPHP du CERTA)
 
-GRANT ALL ON festival . * TO 'festival'@'localhost' IDENTIFIED BY 'secret';
+GRANT ALL ON pfestival . * TO 'festival'@'localhost' IDENTIFIED BY 'secret';
 
 DROP TABLE IF EXISTS `Attribution`;
 DROP TABLE IF EXISTS `Offre`;
