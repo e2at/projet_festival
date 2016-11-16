@@ -17,6 +17,20 @@ class AttributionDAO implements IDAO {
         return $uneAttribution;
     }
     
+    /**
+     * Valorise les paramètre d'une requête préparée avec l'état d'un objet Attribution
+     * @param type $objetMetier une Attribution
+     * @param type $stmt requête préparée
+     */
+    
+    protected static function metierVersEnreg($objetMetier, $stmt) {
+        // On utilise bindValue plutôt que bindParam pour éviter des variables intermédiaires
+        $stmt->bindValue(':idEtab', $objetMetier->getIdEtab());
+        $stmt->bindValue(':idTypeChambre', $objetMetier->getTypeChambre());
+        $stmt->bindValue(':idGroupe', $objetMetier->getIdGroupe());
+        $stmt->bindValue(':nombreChambres', $objetMetier->getNbChambres());
+    }
+    
     public static function getAll() {
         $lesObjets = array();
         $requete = "SELECT * FROM Attribution";
@@ -43,12 +57,36 @@ class AttributionDAO implements IDAO {
         return $objetConstruit;
     }
     
-     public static function insert($objet) {
-        return false;
+    /**
+     * Insérer un nouvel enregistrement dans la table à partir de l'état d'un objet métier
+     * @param Atribution $objet objet métier à insérer
+     * @return boolean =FALSE si l'opérationn échoue
+     */
+    public static function insert($objet) {
+        $requete = "INSERT INTO Attribution VALUES (:idEtab, :idTypeChambre, :idGroupe, :nombreChambres)";
+        $stmt = Bdd::getPdo()->prepare($requete);
+        self::metierVersEnreg($objet, $stmt);
+        $ok = $stmt->execute();
+        return ($ok && $stmt->rowCount() > 0);
     }
 
+
+    /**
+     * Mettre à jour enregistrement dans la table à partir de l'état d'un objet métier
+     * @param string identifiant de l'enregistrement à mettre à jour
+     * @param Etablissement $objet objet métier à mettre à jour
+     * @return boolean =FALSE si l'opérationn échoue
+     */
     public static function update($id, $objet) {
-        return false;
+        $ok = false;
+        $requete = "UPDATE  Attribution SET idEtab=:idEtablissement, idTypeChambre=:idTypeChambre,
+           idGroupe=:idGroupe, nombreChambres=:nombreChambres
+           WHERE ID=:id";
+        $stmt = Bdd::getPdo()->prepare($requete);
+        self::metierVersEnreg($objet, $stmt);
+        $stmt->bindParam(':id', $id);
+        $ok = $stmt->execute();
+        return ($ok && $stmt->rowCount() > 0);
     }
     
     public static function delete($id) {
