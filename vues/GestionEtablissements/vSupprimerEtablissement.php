@@ -14,11 +14,11 @@ $unEtab = EtablissementDAO::getOneById($id);
 /* @var $unEtab Etablissement  */
 $nom = $unEtab->getNom();
 echo "
-<br><center>Voulez-vous vraiment supprimer l'établissement $nom ?
+<br><center><span style=\"color:white;\">Voulez-vous vraiment supprimer l'établissement $nom ?</span>
 <h3><br>
-<a href='cGestionEtablissements.php?action=validerSupprimerEtab&id=$id'>Oui</a>
+<a href='cGestionEtablissements.php?action=validerSupprimerEtab&id=$id' class=\"btn btn-primary\">Oui</a>
 &nbsp; &nbsp; &nbsp; &nbsp;
-<a href='cGestionEtablissements.php?'>Non</a></h3>
+<a href='cGestionEtablissements.php?' class=\"btn btn-danger\">Non</a></h3>
 </center>";
 
 include("includes/_fin.inc.php");

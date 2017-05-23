@@ -18,8 +18,8 @@ echo "
 $nomGroupe = GroupeDAO::getOneById($idGroupe)->getNom();
 
 echo "
-   <br><center>Combien de chambres de type $idTypeChambre souhaitez-vous pour le 
-   groupe $nomGroupe ?";
+   <br><center><span style=\"color:white;\">Combien de chambres de type $idTypeChambre souhaitez-vous pour le 
+   groupe $nomGroupe ?</span>";
 echo "<br><br><br>";
 
 echo "<select name='nbChambres'>";
@@ -28,10 +28,9 @@ for ($i = 0; $i <= $nbChambres; $i++) {
 }
 echo "</select></center>";
 echo "<br>";
-echo "<input type='submit' value='Valider' name='valider'>&nbsp;&nbsp;&nbsp;
-   &nbsp;&nbsp;<input type='reset' value='Annuler' name='Annuler'>
+echo "<input type='submit' class=\"btn btn-success\" value='Valider' name='valider'>
    <br><br>
-   <a href='cAttributionChambres.php?action=demanderModifierAttrib'>Retour</a>
+   <a class=\"btn btn-info\" href='cAttributionChambres.php?action=demanderModifierAttrib'>Retour</a>
 </form>";
 
 include("includes/_fin.inc.php");

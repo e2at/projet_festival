@@ -1,29 +1,31 @@
-l<!doctype html>
+<!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>TypeChambreDAO : test</title>
+        <title>OffreDAO : test</title>
     </head>
 
     <body>
 
         <?php
 
-        use modele\dao\TypeChambreDAO;
+        use modele\dao\OffreDAO;
         use modele\dao\Bdd;
-        use modele\metier\TypeChambre;
+        use modele\metier\Offre;
 
         require_once __DIR__ . '/../includes/autoload.php';
 
-        $id = 'C3';
+        $idEtab = '0350785N';
+        $idTypeChambre = 'C1';
+        $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre);
         Bdd::connecter();
 
-        echo "<h2>Test TypeChambreDAO</h2>";
+        echo "<h2>Test OffreDAO</h2>";
         // Test n°1
         echo "<h3>1- getOneById</h3>";
         try {
-            $objet = TypeChambreDAO::getOneById($id);
-            echo "<p>Voici le libelle d'identifiant $id : " . $objet->getLibelle() . "</p>";
+            $id2 = array('idEtab' => $idEtab, 'idTypeChambre' => 'C2');
+            $objet = OffreDAO::getOneById($id2);
             var_dump($objet);
         } catch (Exception $ex) {
             echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
@@ -32,100 +34,91 @@ l<!doctype html>
         // Test n°2
         echo "<h3>2- getAll</h3>";
         try {
-            $lesObjets = TypeChambreDAO::getAll();
+            $lesObjets = OffreDAO::getAll();
             var_dump($lesObjets);
         } catch (Exception $ex) {
             echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
         }
-
+        
         // Test n°3
         echo "<h3>3- insert</h3>";
         try {
-            $id = 'C9';
-            $objet = new TypeChambre($id, 'Dortoir');
-            $ok = TypeChambreDAO::insert($objet);
+            $objet = new Offre($idEtab, $idTypeChambre, 6);
+            $ok = OffreDAO::insert($objet);
             if ($ok) {
-                echo "<h4> réussite de l'insertion </h4>";
-                $objetLu = TypeChambreDAO::getOneById($id);
+                echo "<h4>ooo réussite de l'insertion : ajout de 6 chambres de type C1 pour l'établissement d'id 0350773A ooo</h4>";
+                $objetLu = OffreDAO::getOneById($id);
                 var_dump($objetLu);
             } else {
-                echo "<h4> échec de l'insertion </h4>";
+                echo "<h4>>ooo réussite du test : la requête d'insertion a échoué ooo</h4>";
             }
         } catch (Exception $ex) {
-            echo "<h4> échec de la requête </h4>" . $ex->getMessage();
+            echo "<h4>>ooo réussite du test : la requête d'insertion a échoué ooo</h4>" . $ex->getMessage();
         }
 
 
         // Test n°4
         echo "<h3>4- update</h3>";
         try {
-            $objet->setLibelle('Chambrée');
-            $ok = TypeChambreDAO::update($id, $objet);
+            $objet->setNbreChambre(7);
+            $ok = OffreDAO::update($id, $objet);
             if ($ok) {
-                echo "<h4> réussite de la mise à jour </h4>";
-                $objetLu = TypeChambreDAO::getOneById($id);
+                echo "<h4>ooo réussite de la mise à jour de l'etablissement d'id 0350773A il a désormais 7 pour les chambres de type C1 ooo</h4>";
+                $objetLu = OffreDAO::getOneById($id);
                 var_dump($objetLu);
             } else {
-                echo "<h4> échec de la mise à jour </h4>";
+                echo "<h4>*** échec de la mise à jour ***</h4>";
             }
         } catch (Exception $ex) {
-            echo "<h4> échec de la requête </h4>" . $ex->getMessage();
+            echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
         }
 
         // Test n°5
         echo "<h3>5- delete</h3>";
         try {
-            $ok = TypeChambreDAO::delete($id);
+            $ok = OffreDAO::delete($id);
             if ($ok) {
-                echo "<h4> réussite de la suppression </h4>";
+                echo "<h4>ooo réussite de la suppression ooo</h4>";
             } else {
-                echo "<h4> échec de l'insertion </h4>";
+                echo "<h4>*** échec de la suppression ***</h4>";
             }
         } catch (Exception $ex) {
-            echo "<h4> échec de la requête </h4>" . $ex->getMessage();
+            echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
         }
-
         // Test n°6
-        echo "<h3>6-1- isAnExistingId - id existant</h3>";
-        $id = "C1"; // id existant
+        echo "<h3>6- obtenirNbOffre - obtenir le nombre d'offres</h3>";
         try {
-            $ok = TypeChambreDAO::isAnExistingId($id);
-            if ($ok == 1) {
-                echo "<h4> réussite du test, l'id existe </h4>";
-            } else {
-                echo "<h4> échec du test </h4>";
+            $objet = OffreDAO::obtenirNbOffre($idEtab, 'C2');
+            echo "Nombre d'offres pour les chambres de type C2 dans l'établissement d'id ".$idEtab." : ".$objet;
+        } catch (Exception $ex) {
+            echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
+        }
+        // Test n°7
+        echo "<h3>7- Test de estModifOffreCorrecte : Cas correct</h3>";
+        try {
+            $objet = OffreDAO::estModifOffreCorrecte($idEtab, 'C2', 8);
+            if($objet){
+                echo "<h4>L'offre est correcte : test conforme</h4>";
+            }else{
+                echo "<h4>L'offre est incorrecte : test non conforme</h4>";
             }
         } catch (Exception $ex) {
-            echo "<h4> échec de la requête </h4>" . $ex->getMessage();
-        }
-        echo "<h3>6-2- isAnExistingId - id inexistant</h3>";
-        $id = "Cx"; // id absent
+            echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
+        } 
+        
+        // Test n°7-2
+        echo "<h3>7-2 estModifOffreCorrecte : Cas incorrect</h3>";
         try {
-            $ok = TypeChambreDAO::isAnExistingId($id);
-            if ($ok == 1) {
-                echo "<h4> échec du test, l'id ne devrait pas exister </h4>";
-                
-            } else {
-                echo "<h4> réussite du test, l'id n'existe pas ooo</h4>";
+            $objet = OffreDAO::estModifOffreCorrecte($idEtab, 'C2', 1);
+            if($objet){
+                echo "<h4>L'offre est correcte : test non conforme</h4>";
+            }else{
+                echo "<h4>L'offre est incorrecte : test conforme</h4>";
             }
         } catch (Exception $ex) {
-            echo "<h4> échec de la requête </h4>" . $ex->getMessage();
-        }
-        echo "<h3>7- isAnExistingLibelle</h3>";
-        try {
-            $ok = TypeChambreDAO::isAnExistingLibelle(true, 'C9', '1 lit'); // libellé existant en création
-            $ok = $ok && !TypeChambreDAO::isAnExistingLibelle(true, 'C9', '1 couette'); // libellé inexistant en création
-            $ok = $ok && !TypeChambreDAO::isAnExistingLibelle(false, 'C1', '1 lit'); // libellé existant mais correspondant à l'id
-            $ok = $ok && TypeChambreDAO::isAnExistingLibelle(false, 'C9', '1 lit'); // libellé inexistant en mode modification
-            if ($ok) {
-                echo "<h4>ooo réussite du test </h4>";
-                
-            } else {
-                echo "<h4> échec du test </h4>";
-            }
-        } catch (Exception $ex) {
-            echo "<h4> échec de la requête </h4>" . $ex->getMessage();
-        }
+            echo "<h4>*** échec de la requête ***</h4>" . $ex->getMessage();
+        } 
+        
         Bdd::deconnecter();
         ?>
 

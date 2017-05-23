@@ -3,6 +3,8 @@
 use \modele\dao\TypeChambreDAO;
 use \modele\dao\GroupeDAO;
 use modele\dao\EtablissementDAO;
+use modele\dao\AttributionDAO;
+use modele\dao\OffreDAO;
 use modele\dao\Bdd;
 
 require_once __DIR__ . '/../../includes/autoload.php';
@@ -38,7 +40,7 @@ echo "
 // AFFICHAGE DE LA 1ÈRE LIGNE D'EN-TÊTE
 echo "
    <tr class='enTeteTabQuad'>
-      <td  colspan='$nbCol'><strong>
+      <td  colspan='$nbCol'><strong style=\"color:black;\">
       Effectuer ou modifier les attributions</strong></td>
    </tr>";
 
@@ -77,14 +79,14 @@ foreach ($lesEtabOffrantChambres as $unEtab) {
     // sans fond particulier
     foreach ($lesTypesChambres as $unTypeChambre) {
         $idTypeChambre = $unTypeChambre->getId();
-        $nbOffre = obtenirNbOffre($connexion, $idEtab, $idTypeChambre);
+        $nbOffre = OffreDAO::obtenirNbOffre($idEtab, $idTypeChambre);
         if ($nbOffre == 0) {
             // Affichage du type de chambre sur fond gris
             echo "<td class='absenceOffre'>$idTypeChambre<br>&nbsp;</td>";
         } else {
             // Recherche du nombre de chambres occupées pour l'établissement 
             // et le type de chambre courants
-            $nbOccup = obtenirNbOccup($connexion, $idEtab, $idTypeChambre);
+            $nbOccup = AttributionDAO::obtenirNbOccup($idEtab, $idTypeChambre);
 
             // Calcul du nombre de chambres libres
             $nbChLib = $nbOffre - $nbOccup;
@@ -138,19 +140,19 @@ foreach ($lesGroupes as $unGroupe) {
             //    ce type dans l'établissement : affichage d'un lien pour 
             //    faire une attribution
 
-            $nbOffre = obtenirNbOffre($connexion, $idEtab, $idTypeChambre);
+            $nbOffre = OffreDAO::obtenirNbOffre($idEtab, $idTypeChambre);
             if ($nbOffre == 0) {
                 // Affichage d'une cellule vide sur fond gris 
                 echo "<td class='absenceOffre'>&nbsp;</td>";
             } else {
-                $nbOccup = obtenirNbOccup($connexion, $idEtab, $idTypeChambre);
+                $nbOccup = AttributionDAO::obtenirNbOccup($idEtab, $idTypeChambre);
 
                 // Calcul du nombre de chambres libres
                 $nbChLib = $nbOffre - $nbOccup;
 
                 // On recherche si des chambres du type en question ont déjà
                 // été attribuées à ce groupe dans cet établissement
-                $nbOccupGroupe = obtenirNbOccupGroupe($connexion, $idEtab, $idTypeChambre, $idGroupe);
+                $nbOccupGroupe = AttributionDAO::obtenirNbOccupGroupe($idEtab, $idTypeChambre, $idGroupe);
                 if ($nbOccupGroupe != 0) {
                     // Le nombre de chambres maximum pouvant être 
                     // demandées est la somme du nombre de chambres 
@@ -187,16 +189,16 @@ echo "
    <tr>
       <br>
 	    <td class='reserveSiLien' height='10'>&nbsp;</td>
-      <td width='21%' align='left'>Réservation possible si lien affiché</td>
+      <td width='21%' align='left' style=\"color:white;\"> Réservation possible si lien affiché</td>
       <td class='absenceOffre' height='10'>&nbsp;</td>
-      <td width='21%' align='left'>Absence d'offre</td>
+      <td width='21%' align='left' style=\"color:white;\"> Absence d'offre</td>
       <td class='reserve' height='10'>&nbsp;</td>
-      <td width='21%' align='left'>Nombre de places réservées</td>
+      <td width='21%' align='left' style=\"color:white;\"> Nombre de places réservées</td>
       <td class='libre' height='10'>&nbsp;</td>
-      <td width='21%' align='left'>Nombre de places encore disponibles</td>
+      <td width='21%' align='left' style=\"color:white;\"> Nombre de places encore disponibles</td>
    </tr>
 </table>";
-echo "<br><center><a href='cAttributionChambres.php'>Retour</a></center>";
+echo "<br><center><a class=\"btn btn-info\" href='cAttributionChambres.php'>Retour</a></center>";
 
 include("includes/_fin.inc.php");
 

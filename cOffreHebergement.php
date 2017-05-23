@@ -4,8 +4,18 @@
  */
 
 include("includes/_gestionErreurs.inc.php");
-include("includes/gestionDonnees/_connexion.inc.php");
-include("includes/gestionDonnees/_gestionBaseFonctionsCommunes.inc.php");
+//include("includes/gestionDonnees/_connexion.inc.php");
+//include("includes/gestionDonnees/_gestionBaseFonctionsCommunes.inc.php");
+
+// Introduction DAO
+use modele\dao\OffreDAO;
+use modele\metier\Offre;
+use modele\dao\Bdd;
+require_once __DIR__ . '/includes/autoload.php';
+
+// Nous commentons les deux derniers includes et utilisons notre DAO "bdd"
+
+Bdd::connecter();
 
 // 1ère étape (donc pas d'action choisie) : affichage du tableau des offres en 
 // lecture seule
@@ -37,12 +47,24 @@ switch ($action) {
             // attributions déjà effectuées pour cet établissement et ce type de
             // chambre, la modification n'est pas effectuée
             $entier = estEntier($nbChambres[$i]);
-            $modifCorrecte = estModifOffreCorrecte($connexion, $idEtab, $idTypeChambre[$i], $nbChambres[$i]);
+            $modifCorrecte = OffreDAO::estModifOffreCorrecte($idEtab, $idTypeChambre[$i], $nbChambres[$i]);
             if (!$entier || !$modifCorrecte) {
                 $err = true;
             } else {
-                modifierOffreHebergement
-                        ($connexion, $idEtab, $idTypeChambre[$i], $nbChambres[$i]);
+                $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i]);
+                $objet = new Offre($idEtab, $idTypeChambre[$i], $nbChambres[$i]);
+
+                if ($nbChambres[$i] == 0) {
+                    OffreDAO::delete($id);
+                }
+                else {
+                    $offres = OffreDAO::obtenirNbOffre($idEtab, $idTypeChambre[$i]);
+                    if($offres != 0) {
+                        OffreDAO::update($id, $objet);
+                    } else {
+                        OffreDAO::insert($objet);
+                    }
+                }
             }
         }
         if ($err) {

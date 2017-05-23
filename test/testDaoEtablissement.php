@@ -1,4 +1,13 @@
-<?php
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>EtablissementDAO : test</title>
+    </head>
+
+    <body>
+
+        <?php
 
         use modele\dao\EtablissementDAO;
         use modele\dao\Bdd;

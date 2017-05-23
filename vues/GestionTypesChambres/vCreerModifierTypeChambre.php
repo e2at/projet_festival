@@ -67,13 +67,13 @@ echo '
 echo "
    <table align='center' cellspacing='15' cellpadding='0'>
       <tr>
-         <td align='right'><input type='submit' value='Valider' name='valider'>
+         <td align='right'><input class=\"btn btn-success\" type='submit' value='Valider' name='valider'>
          </td>
-         <td align='left'><input type='reset' value='Annuler' name='annuler'>
+         <td align='left'>-- <input type='reset' class=\"btn btn-warning\"  value='Effacer' name='annuler'>
          </td>
       </tr>
-   </table>
-   <a href='cGestionTypesChambres.php'>Retour</a>
+   </table><br>
+   <a class=\"btn btn-info\"  href='cGestionTypesChambres'>Retour</a>
 </form>";
 
 include("includes/_fin.inc.php");

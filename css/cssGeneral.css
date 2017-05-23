@@ -26,6 +26,10 @@
    
 }
 
+strong {
+   color:white;
+}
+
 /* Style pour le texte associé à l'onglet Accueil (couleur : bleu foncé avec 
 mise en gras et en italique) */
 .texteAccueil

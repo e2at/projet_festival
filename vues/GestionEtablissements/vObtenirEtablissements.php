@@ -1,5 +1,6 @@
 <?php
 use modele\dao\EtablissementDAO;
+use modele\dao\AttributionDAO;
 use modele\dao\Bdd;
 require_once __DIR__.'/../../includes/autoload.php';
 Bdd::connecter();
@@ -15,7 +16,7 @@ echo "
 <table width='55%' cellspacing='0' cellpadding='0' class='tabNonQuadrille'>
 
    <tr class='enTeteTabNonQuad'>
-      <td colspan='4'><strong>Etablissements</strong></td>
+      <td colspan='4'><strong style=\"color:black;\">Etablissements</strong></td>
    </tr>";
 
 $lesEtablissements = EtablissementDAO::getAll();
@@ -37,7 +38,7 @@ foreach ($lesEtablissements as $unEtablissement) {
 
     // S'il existe déjà des attributions pour l'établissement, il faudra
     // d'abord les supprimer avant de pouvoir supprimer l'établissement
-    if (!existeAttributionsEtab($connexion, $id)) {
+    if (!AttributionDAO::existeAttributionsEtab($id)) {
         echo "
             <td width='16%' align='center'> 
             <a href='cGestionEtablissements.php?action=demanderSupprimerEtab&id=$id'>
@@ -52,8 +53,8 @@ foreach ($lesEtablissements as $unEtablissement) {
 echo "
 </table>
 <br>
-<a href='cGestionEtablissements.php?action=demanderCreerEtab'>
-Création d'un établissement</a >";
+<a style=\"color:white;\" href='cGestionEtablissements.php?action=demanderCreerEtab'>
+<button type=\"button\" class=\"btn btn-primary\">Création d'un établissement</a></button>";
 
 include("includes/_fin.inc.php");
 

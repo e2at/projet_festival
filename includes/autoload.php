@@ -5,12 +5,10 @@
  * sauf qu'ils ne sont pas préfixés par le "Vendor"
  * @param type $className
  */
-function __autoload($className)
-{
-//    $className = ltrim($className, '\\');
-    $fileName  = __DIR__.'/../';
+function __autoload($className){
+	$fileName  = __DIR__.'/../';
+	$fileName  .= str_replace('\\', DIRECTORY_SEPARATOR, $className).'.class.php';
 
-    $fileName  .= str_replace('\\', DIRECTORY_SEPARATOR, $className).'.class.php';
     if (file_exists($fileName)) {
         require_once($fileName);
     } else {
